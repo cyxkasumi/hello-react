@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import {connect} from "./component/connect";
+// import {connect} from "./component/connect";
+import { connect } from 'react-redux'
 
 class ThemeSwitch extends Component {
     changeColorFun(color){
@@ -7,6 +8,7 @@ class ThemeSwitch extends Component {
             this.props.onSwitchColor(color)
         }
     }
+    // bind函数的另一种表现 this.fn = ::this.fn  ::是bind操作符
     render () {
         return (
             <div>

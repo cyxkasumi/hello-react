@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import ThemeSwitch from './ThemeSwitch'
 import PropTypes from 'prop-types'
-import { connect } from './component/connect'
-
+// import { connect } from './component/connect'
+import { connect } from 'react-redux'
 class Content extends Component {
     static propTypes = {
         themeColor: PropTypes.string

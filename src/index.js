@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import './index.css';
-import PropsTypes from 'prop-types'
+// import './index.css';
+// import PropsTypes from 'prop-types'
 // import App from './App';
 // import * as serviceWorker from './serviceWorker';
 //
@@ -23,54 +23,84 @@ import PropsTypes from 'prop-types'
 //     <CommentApp/>,
 //     document.getElementById('root')
 // )
+// import Header from './views/reactReduxBySelf/Header'
+// import Content from './views/reactReduxBySelf/Content'
 
 // 自己手动写react-redux
-import { Provider } from './views/reactReduxBySelf/component/Provider'
-
-import Header from './views/reactReduxBySelf/Header'
-import Content from './views/reactReduxBySelf/Content'
-function createStore (reducer) {
-    let state = null
-    const listeners = []
-    const subscribe = (listener) => listeners.push(listener)
-    const getState = () => state
-    const dispatch = (action) => {
-        state = reducer(state, action)
-        listeners.forEach((listener) => listener())
-    }
-    dispatch({}) // 初始化state
-    return { getState, dispatch, subscribe }
-}
-const themeReducer = (state, action) =>{
-    if(!state) return {
-        themeColor: 'red'
-    }
-    switch (action.type){
-        case 'CHANGE_COLOR':
-            return {
-                ...state,
-                themeColor: action.themeColor
-            }
-        default:
-            return state
-    }
-}
-const store = createStore(themeReducer)
+// import { Provider } from './views/reactReduxBySelf/component/Provider'
+// function createStore (reducer) {
+//     let state = null
+//     const listeners = []
+//     const subscribe = (listener) => listeners.push(listener)
+//     const getState = () => state
+//     const dispatch = (action) => {
+//         state = reducer(state, action)
+//         listeners.forEach((listener) => listener())
+//     }
+//     dispatch({}) // 初始化state
+//     return { getState, dispatch, subscribe }
+// }
+// const themeReducer = (state, action) =>{
+//     if(!state) return {
+//         themeColor: 'red'
+//     }
+//     switch (action.type){
+//         case 'CHANGE_COLOR':
+//             return {
+//                 ...state,
+//                 themeColor: action.themeColor
+//             }
+//         default:
+//             return state
+//     }
+// }
+// const store = createStore(themeReducer)
 
 
-class Index extends Component {
-    render () {
-        return (
-            <div>
-                <Header/>
-                <Content/>
-            </div>
-        )
-    }
-}
+// 真正使用redux
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+
+// const themeReducer = (state, action) => {
+//     if(!state) return {
+//         themeColor: 'red'
+//     }
+//     switch (action.type) {
+//         case "CHANGE_COLOR":
+//             return {
+//                 ...state,
+//                 themeColor: action.themeColor
+//             }
+//         default:
+//             return state
+//     }
+// }
+// const store = createStore(themeReducer)
+
+// class Index extends Component {
+//     render () {
+//         return (
+//             <div>
+//                 <Header />
+//                 <Content />
+//             </div>
+//         )
+//     }
+// }
+// ReactDOM.render(
+//     <Provider store={ store }>
+//         <Index />
+//     </Provider>,
+//     document.getElementById('root')
+// )
+
+// todolist实战
+import TodoApp from './views/todoListApp/TodoApp'
+import store from './views/todoListApp/Store'
+
 ReactDOM.render(
     <Provider store={store}>
-        <Index />
+        <TodoApp />,
     </Provider>,
     document.getElementById('root')
 )
