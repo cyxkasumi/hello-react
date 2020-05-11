@@ -11,10 +11,9 @@ const TodoList = ({ todos, onToggleTodo, onRemoveTodo }) => {
                 todos.map(item => (
                     <TodoItem
                         key={item.id}
+                        id={item.id}
                         text={item.text}
-                        completed={item.completed}
-                        onToggleTodo={() => { onToggleTodo(item.id) }}
-                        onRemoveTodo={() => { onRemoveTodo(item.id) }} />
+                        completed={item.completed} />
                 ))
             }
         </ul>
@@ -42,20 +41,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onToggleTodo: id => {
-            dispatch(toggleTodo(id))
-        },
-        onRemoveTodo: id => {
-            dispatch(removeTodo(id))
-        }
-    }
-}
-// const mapDispatchToProps = {
-//     onToggleTodo: toggleTodo,
-//     onRemoveTodo: removeTodo
-// }
-
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
+export default connect(mapStateToProps)(TodoList)
 
