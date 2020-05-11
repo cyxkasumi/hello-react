@@ -5,23 +5,28 @@ import { addTodo } from '../action'
 class AddTodo extends Component {
     constructor() {
         super()
+        this.state = {
+            val: ''
+        }
     }
     onSubmit(event) {
-        const input = this.input
-        if (!input.value.trim()) {
+        if (!this.state.val) {
             return
         }
-        this.props.onAdd(input.value)
-        input.value = ''
-
+        this.props.onAdd(this.state.val)
+        this.setState({
+            val: ''
+        })
     }
-    refInput(node) {
-        this.input = node
+    onInputChange(event) {
+        this.setState({
+            val: event.target.value
+        })
     }
     render() {
         return (
             <div className="add-todo">
-                <input className="new-todo" ref={this.refInput.bind(this)} />
+                <input className="new-todo" value={this.state.val} onChange={this.onInputChange.bind(this)} />
                 <button className="add-btn" onClick={this.onSubmit.bind(this)}>添加</button>
             </div>
         )

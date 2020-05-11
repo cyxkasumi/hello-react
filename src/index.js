@@ -100,7 +100,7 @@ import store from './views/todoListApp/Store'
 
 ReactDOM.render(
     <Provider store={store}>
-        <TodoApp />,
+        <TodoApp />
     </Provider>,
     document.getElementById('root')
 )

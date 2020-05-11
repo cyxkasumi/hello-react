@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import AddTodo from './AddTodo'
 import TodoList from './TodoList'
-import './style.css';
+import './style.css'
 
 export default class Todo extends Component {
     render() {

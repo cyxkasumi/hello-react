@@ -4,7 +4,7 @@ import TodoItem from './TodoItem'
 import { connect } from 'react-redux'
 import { toggleTodo, removeTodo } from '../action'
 
-const TodoList = ({ todos, onToggleTode, onRemoveTodo }) => {
+const TodoList = ({ todos, onToggleTodo, onRemoveTodo }) => {
     return (
         <ul>
             {
@@ -12,8 +12,8 @@ const TodoList = ({ todos, onToggleTode, onRemoveTodo }) => {
                     <TodoItem
                         key={item.id}
                         text={item.text}
-                        completed={item.complete}
-                        onToggleTodo={() => { onToggleTode(item.id) }}
+                        completed={item.completed}
+                        onToggleTodo={() => { onToggleTodo(item.id) }}
                         onRemoveTodo={() => { onRemoveTodo(item.id) }} />
                 ))
             }
@@ -28,9 +28,9 @@ const selectVisibleTodos = (todos, filter) => {
         case 'ALL':
             return todos
         case 'COMPLETED':
-            return todos.filter(item => item.complete)
+            return todos.filter(item => item.completed)
         case 'UNCOMPLETED':
-            return todos.filter(item => !item.complete)
+            return todos.filter(item => !item.completed)
         default:
             throw new Error('unsupported filter')
     }
@@ -42,20 +42,20 @@ const mapStateToProps = (state) => {
     }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         onToggleTodo: id => {
-//             dispatch(toggleTodo(id))
-//         },
-//         onRemoveTodo: id => {
-//             dispatch(removeTodo(id))
-//         }
-//     }
-// }
-const mapDispatchToProps = {
-    onToggleTodo: toggleTodo,
-    onRemoveTodo: removeTodo
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onToggleTodo: id => {
+            dispatch(toggleTodo(id))
+        },
+        onRemoveTodo: id => {
+            dispatch(removeTodo(id))
+        }
+    }
 }
+// const mapDispatchToProps = {
+//     onToggleTodo: toggleTodo,
+//     onRemoveTodo: removeTodo
+// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
 
